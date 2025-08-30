@@ -1,121 +1,149 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EmpatIA Dashboard</title>
-  <link rel="stylesheet" href="assets/dashboard.css">
+
+  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/dashboard.css">
+  <link rel="stylesheet" href="assets/encuesta.css"> <!-- CSS de la encuesta -->
 </head>
+
 <body>
   <!-- Navbar -->
-  <header class="navbar">
-    <div class="logo">
-      <span class="logo-icon">💚</span>
-      <h1>EmpatIA</h1>
+  <header class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="d-flex align-items-center text-decoration-none" href="#">
+        <img src="img/logo EmpatIA.png" alt="Logo EmpatIA" class="brand-logo">
+        <h1 class="brand ms-2 mb-0"><span class="empat">Empat</span><span class="ia">IA</span></h1>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+        aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="mainNav">
+        <nav class="ms-auto">
+          <ul class="navbar-nav align-items-center">
+            <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Encuestas</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Lumis AI</a></li>
+          </ul>
+        </nav>
+
+        <div class="d-flex align-items-center ms-3 gap-3">
+          <button id="darkModeToggle" class="btn btn-sm btn-outline-primary" type="button"
+            aria-pressed="false">🌙</button>
+          <div class="icons">🔔 👤</div>
+        </div>
+      </div>
     </div>
-    <nav>
-      <a href="#">Dashboard</a>
-      <a href="#">Encuestas</a>
-      <a href="#">Lumis AI</a>
-      <span class="icons">🔔 👤</span>
-    </nav>
   </header>
 
+  <!-- Main content -->
   <main>
+    <!-- Bienvenida -->
+    <section class="welcome">
+      <h2>¡Hola, María!</h2>
+      <p>¿Cómo te sientes hoy? Tu bienestar es nuestra prioridad.</p>
+    </section>
 
-  
-  <!-- Saludo -->
-  <section class="welcome">
-    <h2>¡Hola, María!</h2>
-    <p>¿Cómo te sientes hoy? Tu bienestar es nuestra prioridad.</p>
-  </section>
+    <!-- Tarjetas / Grid principal -->
+    <section class="cards">
 
-  <!-- Tarjetas superiores -->
-  <section class="cards">
-    <article class="card green">
-      <h3>Encuesta Diaria</h3>
-      <p>Comparte cómo te sientes hoy</p>
-      <button>Completar Ahora</button>
-    </article>
+      <!-- ✅ Encuesta Diaria -->
+      <article class="card encuesta-card">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-start mb-2">
+            <!-- Icono -->
+            <div class="icon-container">📝</div>
+            <!-- Estado -->
+            <span id="survey-status" class="estado pendiente">Pendiente</span>
+          </div>
 
-    <article class="card blue">
-      <h3>Recomendaciones Lumis</h3>
-      <p>Insights personalizados para ti</p>
-      <button>Ver Insights</button>
-    </article>
+          <h2 class="card-title">Encuesta diaria</h5>
+            <p class="card-text">Comparte cómo te sientes hoy</p>
+            <a href="/views/dailyencuenta.html" class="btn btn-success" id="complete-survey">
+              Completar ahora
+            </a>
+        </div>
+      </article>
 
-    <article class="card cyan">
+      <!-- Card de Lumis -->
+      <article class="card lumis-card">
+        <div class="lumis-illustration"></div>
+        <div class="lumis-overlay">
+          <h3 class="lumis-title">Lumis - Tu Asistente IA</h3>
+          <p class="lumis-text">Conéctate con Lumis para apoyo y recomendaciones personalizadas</p>
 
-    </article>
+          <!-- Botones -->
+          <div class="lumis-actions">
+            <button id="open-chat" class="btn btn-primary">Abrir chat</button>
+            <button id="show-recommendations" class="btn btn-secondary">Ver recomendaciones</button>
+          </div>
+        </div>
+      </article>
 
-    <article class="chart">
-      <h3>Estado de Ánimo - Últimos 7 días</h3>
-      <div class="bars">
-        <div class="bar green" style="height: 80%;">Lun</div>
-        <div class="bar blue" style="height: 60%;">Mar</div>
-        <div class="bar green" style="height: 90%;">Mié</div>
-        <div class="bar yellow" style="height: 50%;">Jue</div>
-        <div class="bar green" style="height: 85%;">Vie</div>
-        <div class="bar green" style="height: 70%;">Sáb</div>
-        <div class="bar blue" style="height: 60%;">Dom</div>
+      <!-- Contenedor para recomendaciones -->
+      <section id="recommendations" class="recommendations hidden">
+        <h4>Recomendaciones de Lumis</h4>
+        <ul>
+          <li>Respira profundo 3 veces antes de comenzar el día 🌞</li>
+          <li>Escribe algo positivo que te haya pasado hoy ✍️</li>
+          <li>Escucha tu canción favorita para relajarte 🎶</li>
+        </ul>
+      </section>
+    </section>
+
+    <!-- ===== Card Consejo del Día ===== -->
+    <article class="card tip-card mb-3">
+      <div class="card-body d-flex align-items-start gap-2">
+        <!-- Icono de foco -->
+        <div class="tip-icon">💡</div>
+
+        <div>
+          <h5 class="tip-title mb-2">Consejo del día</h5>
+          <p class="tip-text mb-0">Recuerda que cada pequeño paso cuenta. Hoy es un buen día para practicar la gratitud
+            y reconocer tus logros.</p>
+        </div>
       </div>
-      <div class="legend">
-        <span class="dot green"></span> Excelente
-        <span class="dot blue"></span> Bueno
-        <span class="dot yellow"></span> Regular
+    </article>
+
+    <!-- Insights -->
+    <section class="insights">
+      <h3>Insights de Lumis AI</h3>
+      <div class="insight-cards">
+        <article class="insight green">
+          <h4>Progreso Positivo</h4>
+          <p>Tu estado de ánimo ha mejorado un 23% esta semana comparado con la anterior.</p>
+        </article>
+        <article class="insight blue">
+          <h4>Patrón Detectado</h4>
+          <p>Tus mejores días suelen ser martes y viernes. Considera programar actividades importantes en esos días.</p>
+        </article>
+        <article class="insight cyan">
+          <h4>Recomendación</h4>
+          <p>Agregar 10 minutos de meditación por las mañanas puede ayudar a mantener el equilibrio.</p>
+        </article>
       </div>
-    </article>
-
-    <article class="status">
-      <h3>Estado Actual</h3>
-      <p class="positive">😊 Positivo</p>
-      <small>Te sientes bien hoy</small>
-    </article>
-
-    <article class="overflow-y-scroll">
-      <h3>Consejo del día</h3>
-      <p>"Recuerda que cada pequeño paso cuenta. Hoy es un buen día para practicar la gratitud y reconocer tus logrosaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa."</p>
-    </article>
-  </section>
-
-  <!-- Insights de Lumis AI -->
-  <section class="insights">
-    <h3>Insights de Lumis AI</h3>
-    <div class="insight-cards">
-      <article class="insight green">
-        <h4>Progreso Positivo</h4>
-        <p>Tu estado de ánimo ha mejorado un 23% esta semana comparado con la anterior.</p>
-      </article>
-      <article class="insight blue">
-        <h4>Patrón Detectado</h4>
-        <p>Tus mejores días suelen ser martes y viernes. Considera programar actividades importantes.</p>
-      </article>
-      <article class="insight cyan">
-        <h4>Recomendación</h4>
-        <p>Considera agregar 10 minutos de meditación por las mañanas para mantener tu equilibrio.</p>
-      </article>
-    </div>
-  </section>
-
-  <!-- Actividad Reciente -->
-  <section class="activity">
-    <h3>Actividad Reciente</h3>
-    <div class="activity-list">
-      <article class="activity-item green">
-        <h4>Encuesta diaria completada</h4>
-        <small>Hace 2 horas</small>
-      </article>
-      <article class="activity-item blue">
-        <h4>Nuevos insights de Lumis AI</h4>
-        <small>Ayer</small>
-      </article>
-      <article class="activity-item cyan">
-        <h4>Sesión semanal programada</h4>
-        <small>Hace 3 días</small>
-      </article>
-    </div>
-  </section>
+    </section>
   </main>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Scripts -->
+  <script src="script/daily-survey.js"></script>
+  <script src="script/darkmode.js"></script>
+  <script src="script/chart.js"></script>
+  <script src="script/lumis.js"></script>
 </body>
+
 </html>
