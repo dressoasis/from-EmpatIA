@@ -1,11 +1,13 @@
 /* ===========================
-   Dashboard - CSS completo
+   Dashboard - CSS Completo
    ===========================
-   - Navbar reparado (compatible con Bootstrap)
-   - Grid: 1 = Encuesta, 2 = Lumis (ocupa 2 filas), 3 = Recomendaciones
+   - Navbar reparado
+   - Grid de Cards
    - Modo oscuro preservado
-   - Imagen Lumis dark ocupa toda la card
-   - Limpio y listo para pegar
+   - Lumis dark ocupa toda la card
+   - Tip-card
+   - Responsive
+   - Toggle Uiverse fuera del menú hamburguesa
 */
 
 /* ---------- Variables ---------- */
@@ -78,6 +80,7 @@ header.navbar .container-fluid {
   gap: 12px;
 }
 
+/* Logo y marca */
 .logo {
   display: flex;
   align-items: center;
@@ -106,13 +109,7 @@ header.navbar .container-fluid {
   color: rgba(43, 165, 187, 0.73);
 }
 
-header.navbar .navbar-collapse {
-  display: flex !important;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 14px;
-}
-
+/* Navbar links */
 .navbar-nav {
   display: flex;
   gap: 14px;
@@ -137,6 +134,7 @@ header.navbar nav a:hover {
   background: rgba(0, 0, 0, 0.02);
 }
 
+/* Botón hamburguesa */
 .navbar-toggler {
   border: none;
   padding: 6px;
@@ -157,6 +155,14 @@ header.navbar nav a:hover {
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='currentColor' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>");
   background-repeat: no-repeat;
   background-position: center;
+}
+
+/* ===== Toggle Uiverse (FUERA DEL MENÚ) ===== */
+.theme-switch-container {
+  margin-left: auto;
+  /* siempre a la derecha */
+  display: flex;
+  align-items: center;
 }
 
 /* ===== Bienvenida ===== */
@@ -221,7 +227,7 @@ header.navbar nav a:hover {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background: linear-gradient(135deg, #d4f8e8, #a8e6cf);
+  background: linear-gradient(135deg, #AEEBCF, #FFF9C8);
   min-height: 220px;
   border-radius: 14px;
   padding: 18px;
@@ -296,7 +302,7 @@ header.navbar nav a:hover {
   position: relative;
   border-radius: 15px;
   overflow: hidden;
-  background: url('../img/cardlumis.png') center/cover no-repeat;
+  background: url('/img/cardlumis.png') center/cover no-repeat;
   min-height: 250px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
@@ -366,7 +372,7 @@ header.navbar nav a:hover {
 
 /* ===== Recomendaciones ===== */
 .recommendations {
-  background: #f8f9fa;
+  background: linear-gradient(135deg, #AEEBCF, #FFF9C8);
   padding: 15px;
   border-left: 4px solid #4baea0;
   border-radius: 8px;
@@ -378,8 +384,33 @@ header.navbar nav a:hover {
   display: none !important;
 }
 
+/* ===== Tip Card ===== */
+.tip-card {
+  background: linear-gradient(135deg, #AEEBCF, #FFD1E0);
+  border-left: 4px solid #00acc1;
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.tip-card .tip-icon {
+  font-size: 1.5rem;
+  margin-top: 2px;
+}
+
+.tip-card .tip-title {
+  font-weight: 700;
+  color: #007c91;
+}
+
+.tip-card .tip-text {
+  color: #005f6b;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
 /* ===== Responsive ===== */
-@media (max-width: 900px) {
+@media (max-width:900px) {
   .cards {
     grid-template-columns: 1fr;
     grid-auto-rows: auto;
@@ -416,36 +447,7 @@ header.navbar nav a:hover {
   }
 }
 
-/* ===== Card Consejo del Día ===== */
-.tip-card {
-  background-color: #e0f7fa;
-  /* color de fondo azul claro */
-  border-left: 4px solid #00acc1;
-  /* barra izquierda azul más oscuro */
-  border-radius: 12px;
-  padding: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
-
-.tip-card .tip-icon {
-  font-size: 1.5rem;
-  margin-top: 2px;
-}
-
-.tip-card .tip-title {
-  font-weight: 700;
-  color: #007c91;
-  /* azul para el título */
-}
-
-.tip-card .tip-text {
-  color: #005f6b;
-  /* texto un poco más oscuro */
-  font-size: 0.95rem;
-  line-height: 1.4;
-}
-
-/* ===== Modo oscuro global ===== */
+/* ===== Modo oscuro adicional ===== */
 body.dark-mode {
   --bg: #0b1116;
   --card-bg: #0f171a;
@@ -459,6 +461,20 @@ body.dark-mode {
   color: var(--text);
 }
 
+body.dark-mode .lumis-card {
+  background: url('../img/cardlumisdark.png') center/cover no-repeat;
+}
+
+body.dark-mode .recommendations h4,
+li {
+  color: #1a252c;
+  border-left-color: #5bd69f;
+}
+
+body.dark-mode .recommendations {
+  background: linear-gradient(135deg, #AEEBCF, #FFF9C8);
+}
+
 body.dark-mode header.navbar {
   background: var(--card-bg);
   border-bottom-color: rgba(255, 255, 255, 0.03);
@@ -469,136 +485,175 @@ body.dark-mode header.navbar nav a {
   color: rgba(230, 240, 245, 0.92);
 }
 
-body.dark-mode header.navbar .nav-link:hover,
-body.dark-mode header.navbar nav a:hover {
+body.dark-mode header.navbar .nav-link:hover {
   color: var(--accent);
-  background: rgba(255, 255, 255, 0.02);
 }
 
-body.dark-mode .card {
-  background: #0d1618;
-  color: var(--text);
-  border: 1px solid rgba(255, 255, 255, 0.03);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+/* ===== Toggle Uiverse original ===== */
+/* ... Mantengo todo tu CSS de toggle intacto ... */
+
+.theme-switch {
+  --toggle-size: 20px;
+  --container-width: 5em;
+  --container-height: 2em;
+  --container-radius: 3em;
+  --container-light-bg: #3D7EAE;
+  --container-night-bg: #1D1F2C;
+  --circle-container-diameter: 2.5em;
+  --sun-moon-diameter: 1.5em;
+  --sun-bg: #ECCA2F;
+  --moon-bg: #C4C9D1;
+  --spot-color: #959DB1;
+  --circle-container-offset: calc((var(--circle-container-diameter) - var(--container-height)) / 2 * -1);
+  --stars-color: #fff;
+  --clouds-color: #F3FDFF;
+  --back-clouds-color: #AACADF;
+  --transition: .5s cubic-bezier(0, -0.02, 0.4, 1.25);
+  --circle-transition: .3s cubic-bezier(0, -0.02, 0.35, 1.17);
 }
 
-body.dark-mode .encuesta-card {
-  background: linear-gradient(135deg, #0f2b28 0%, #0b2420 100%);
-  color: var(--text);
+.theme-switch,
+.theme-switch * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-size: var(--toggle-size);
 }
 
-body.dark-mode .encuesta-card .card-title,
-body.dark-mode .encuesta-card .card-text {
-  color: rgba(230, 240, 245, 0.95);
-}
-
-body.dark-mode .encuesta-card .icon-container {
-  background: #2a8a6a;
-}
-
-body.dark-mode #survey-status {
-  background: rgba(255, 255, 255, 0.06);
-  box-shadow: none;
-  color: var(--text);
-}
-
-body.dark-mode #survey-status.pending {
-  color: var(--warning);
-  background: rgba(255, 180, 110, 0.06);
-  border: 1px solid rgba(255, 180, 110, 0.08);
-}
-
-body.dark-mode #survey-status.completado {
-  color: var(--success);
-  background: rgba(90, 200, 140, 0.06);
-  border: 1px solid rgba(90, 200, 140, 0.08);
-}
-
-body.dark-mode .recommendations {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
-  color: rgba(230, 240, 245, 0.95);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.5);
-  border-left-color: var(--success);
-}
-
-body.dark-mode .btn-primary {
-  background: linear-gradient(180deg, #3b9386, #2f7a6f);
-  color: #fff;
-  border: none;
-}
-
-body.dark-mode .btn-secondary {
-  background: linear-gradient(180deg, #58aed2, #3b9fc6);
-  color: #071827;
-  border: none;
-}
-
-/* ===== Lumis card dark - imagen ocupa toda la card ===== */
-body.dark-mode .lumis-card {
-  background: none;
-  /* eliminamos fondo claro */
+.theme-switch__container {
+  width: var(--container-width);
+  height: var(--container-height);
+  background-color: var(--container-light-bg);
+  border-radius: var(--container-radius);
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0em -0.062em 0.062em rgba(0, 0, 0, 0.25), 0em 0.062em 0.125em rgba(255, 255, 255, 0.94);
+  transition: var(--transition);
   position: relative;
 }
 
-body.dark-mode .lumis-card::before {
+.theme-switch__checkbox {
   display: none;
-  /* quitamos overlay oscuro */
 }
 
-body.dark-mode .lumis-illustration {
-  display: block;
+.theme-switch__circle-container {
+  width: var(--circle-container-diameter);
+  height: var(--circle-container-diameter);
+  background-color: rgba(255, 255, 255, 0.1);
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
+  left: var(--circle-container-offset);
+  top: var(--circle-container-offset);
+  border-radius: var(--container-radius);
+  display: flex;
+  transition: var(--circle-transition);
   pointer-events: none;
-  z-index: 1;
-  opacity: 1;
-  background-image: url('/img/cardlumisdark.png');
-  /* ruta de tu imagen dark */
 }
 
-.lumis-overlay {
+.theme-switch__sun-moon-container {
+  pointer-events: auto;
   position: relative;
   z-index: 2;
-  padding: 1.75rem;
-  color: #fff;
+  width: var(--sun-moon-diameter);
+  height: var(--sun-moon-diameter);
+  margin: auto;
+  border-radius: var(--container-radius);
+  background-color: var(--sun-bg);
+  box-shadow: 0.062em 0.062em 0.062em 0 rgba(254, 255, 239, 0.61) inset, 0em -0.062em 0.062em 0 #a1872a inset;
+  filter: drop-shadow(0.062em 0.125em 0.125em rgba(0, 0, 0, 0.25)) drop-shadow(0em 0.062em 0.125em rgba(0, 0, 0, 0.25));
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.theme-switch__moon {
+  transform: translateX(100%);
+  width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  background-color: var(--moon-bg);
+  border-radius: inherit;
+  box-shadow: 0.062em 0.062em 0.062em 0 rgba(254, 255, 239, 0.61) inset, 0em -0.062em 0.062em 0 #969696 inset;
+  transition: var(--transition);
+  position: relative;
 }
 
-.lumis-overlay h3,
-.lumis-overlay p {
-  color: rgba(255, 255, 255, 0.95);
+.theme-switch__spot {
+  position: absolute;
+  top: 0.75em;
+  left: 0.312em;
+  width: 0.75em;
+  height: 0.75em;
+  border-radius: var(--container-radius);
+  background-color: var(--spot-color);
+  box-shadow: 0 0.0312em 0.062em rgba(0, 0, 0, 0.25) inset;
 }
 
-@media (max-width:900px) {
-  body.dark-mode .lumis-illustration {
-    display: none;
-  }
+.theme-switch__spot:nth-of-type(2) {
+  width: 0.375em;
+  height: 0.375em;
+  top: 0.937em;
+  left: 1.375em;
 }
 
-body.dark-mode .tip-card {
-  background-color: #0b1a20;
-  border-left-color: #00acc1;
-  color: #d7e6ef;
+.theme-switch__spot:nth-last-of-type(3) {
+  width: 0.25em;
+  height: 0.25em;
+  top: 0.312em;
+  left: 0.812em;
 }
 
-body.dark-mode .tip-card .tip-title {
-  color: #66d7ff;
+.theme-switch__clouds {
+  width: 1.25em;
+  height: 1.25em;
+  background-color: var(--clouds-color);
+  border-radius: var(--container-radius);
+  position: absolute;
+  bottom: -0.625em;
+  left: 0.312em;
+  box-shadow: 0.937em 0.312em var(--clouds-color), -0.312em -0.312em var(--back-clouds-color),
+    1.437em 0.375em var(--clouds-color), 0.5em -0.125em var(--back-clouds-color),
+    2.187em 0 var(--clouds-color), 1.25em -0.062em var(--back-clouds-color),
+    2.937em 0.312em var(--clouds-color), 2em -0.312em var(--back-clouds-color),
+    3.625em -0.062em var(--clouds-color), 2.625em 0 var(--back-clouds-color),
+    4.5em -0.312em var(--clouds-color), 3.375em -0.437em var(--back-clouds-color),
+    4.625em -1.75em 0 0.437em var(--clouds-color), 4em -0.625em var(--back-clouds-color),
+    4.125em -2.125em 0 0.437em var(--back-clouds-color);
+  transition: var(--transition);
 }
 
-body.dark-mode .tip-card .tip-text {
-  color: #bcdbe4;
+.theme-switch__stars-container {
+  position: absolute;
+  color: var(--stars-color);
+  top: -100%;
+  left: 0.312em;
+  width: 2.75em;
+  height: auto;
+  transition: var(--transition);
 }
 
-/* Toggle color (botón toggler) */
-.navbar-toggler {
-  color: var(--toggle-color);
+.theme-switch__checkbox:checked+.theme-switch__container {
+  background-color: var(--container-night-bg);
+}
+
+.theme-switch__checkbox:checked+.theme-switch__container .theme-switch__circle-container {
+  left: calc(100% - var(--circle-container-offset) - var(--circle-container-diameter));
+}
+
+.theme-switch__checkbox:checked+.theme-switch__container .theme-switch__moon {
+  transform: translate(0);
+}
+
+.theme-switch__checkbox:checked+.theme-switch__container .theme-switch__clouds {
+  bottom: -4.062em;
+}
+
+.theme-switch__checkbox:checked+.theme-switch__container .theme-switch__stars-container {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.theme-switch__circle-container:hover {
+  left: calc(var(--circle-container-offset) + 0.187em);
+}
+
+.theme-switch__checkbox:checked+.theme-switch__container .theme-switch__circle-container:hover {
+  left: calc(100% - var(--circle-container-offset) - var(--circle-container-diameter) - 0.187em);
 }
