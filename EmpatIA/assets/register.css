@@ -1,5 +1,8 @@
 body {
-  background: linear-gradient(135deg, #b3e5fcbd, #a8e6cf86); /* azul pastel → verde menta */
+  background: linear-gradient(135deg, 
+    #F8F9FA 0%, 
+    #B3E0FF 45%, 
+    #A2E7C6 100%);
   display: flex;
   align-items: center;
   justify-content: center;

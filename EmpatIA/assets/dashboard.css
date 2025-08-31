@@ -379,10 +379,19 @@ header.navbar nav a:hover {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
-/* hidden helper */
-.hidden {
-  display: none !important;
+#recommendations {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.8s ease, opacity 0.5s ease;
 }
+
+/* Cuando tiene la clase show */
+#recommendations.show {
+  max-height: 600px; /* pon un valor suficientemente grande */
+  opacity: 1;
+}
+
 
 /* ===== Tip Card ===== */
 .tip-card {
@@ -656,4 +665,83 @@ body.dark-mode header.navbar .nav-link:hover {
 
 .theme-switch__checkbox:checked+.theme-switch__container .theme-switch__circle-container:hover {
   left: calc(100% - var(--circle-container-offset) - var(--circle-container-diameter) - 0.187em);
+}
+
+/* ===== Insights Container ===== */
+.insights {
+  margin-top: 4rem;
+  margin-bottom: 5rem;
+}
+
+.insights h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text);
+}
+
+.insight-cards {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* ===== Insight Card ===== */
+.insight {
+  flex: 1;
+  min-width: 250px;
+  padding: 18px;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: var(--shadow-sm);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.insight:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.insight h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.insight p {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* ===== Colores específicos ===== */
+.insight.green {
+  background: linear-gradient(135deg, #d2f5e5, #baf2d5);
+}
+
+.insight.blue {
+  background: linear-gradient(135deg, #d8ebff, #c3e2ff);
+}
+
+.insight.cyan {
+  background: linear-gradient(135deg, #d4f9f3, #baf0ea);
+}
+
+/* ===== Iconos dentro de títulos ===== */
+.insight.green h4::before {
+  content: "🟢";
+}
+
+.insight.blue h4::before {
+  content: "🔎";
+}
+
+.insight.cyan h4::before {
+  content: "💡";
 }

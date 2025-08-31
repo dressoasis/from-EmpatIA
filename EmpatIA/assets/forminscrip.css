@@ -1,7 +1,9 @@
 
     body {
       font-family: 'Nunito', sans-serif;
-       background: linear-gradient(135deg, #b3e5fcbd, #a8e6cf86);
+      background: linear-gradient(135deg, 
+        #B3E0FF 0%, 
+        #A2E7C6 100%);
     }
 
     .container-form {
@@ -28,11 +30,26 @@
       padding: 1.8rem;
       margin-bottom: 1.8rem;
       box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 2s ease;
     }
+
+    .section-card.show {
+      opacity: 1;
+      transform: translateY(0);
+      /* Una vez ya apareció, cambiamos a tiempos cortos (hover) */
+      transition: opacity 0.8s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
     .section-card:hover {
       transform: translateY(-4px);
       box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }
+
+    .section-card.consent:hover {
+      transform: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     }
 
     .section-title {
@@ -47,6 +64,14 @@
     .section-title i {
       font-size: 1.3rem;
       color: #6a11cb;
+    }
+
+    .question {
+      margin-top: 2rem;
+    }
+
+    .check-consent {
+      cursor: pointer;
     }
 
     .btn-pastel {

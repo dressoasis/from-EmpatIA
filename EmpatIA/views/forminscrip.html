@@ -65,7 +65,7 @@
           <div class="form-check"><input class="form-check-input" type="checkbox"> <label class="form-check-label">Diario</label></div>
           <div class="form-check"><input class="form-check-input" type="checkbox"> <label class="form-check-label">Varias veces por semana</label></div>
         </div>
-        <div class="mb-3">
+        <div class="mb-3 question">
           <label class="form-label">¿Qué esperas obtener de EmpatIA?</label>
           <div class="form-check"><input class="form-check-input" type="checkbox"> <label class="form-check-label">Apoyo emocional inmediato</label></div>
           <div class="form-check"><input class="form-check-input" type="checkbox"> <label class="form-check-label">Herramientas para manejar ansiedad</label></div>
@@ -86,7 +86,7 @@
         <input type="text" class="form-control mb-3" placeholder="Si respondiste sí, ¿cuál fue el motivo principal?" maxlength="200">
 
         <!-- b) Psiquiátricos -->
-        <label class="form-label">¿Has recibido algún diagnóstico en salud mental?</label>
+        <label class="form-label question">¿Has recibido algún diagnóstico en salud mental?</label>
         <div class="form-check"><input class="form-check-input" type="checkbox"> Ansiedad</div>
         <div class="form-check"><input class="form-check-input" type="checkbox"> Depresión</div>
         <div class="form-check"><input class="form-check-input" type="checkbox"> Trastorno bipolar</div>
@@ -94,16 +94,16 @@
         <div class="form-check"><input class="form-check-input" type="checkbox"> Otro: <input type="text" class="form-control form-control-sm d-inline-block w-auto" maxlength="200"></div>
         <div class="form-check mb-3"><input class="form-check-input" type="checkbox"> Ninguno</div>
 
-        <label class="form-label">¿Actualmente recibes tratamiento con medicación psiquiátrica?</label>
+        <label class="form-label question">¿Actualmente recibes tratamiento con medicación psiquiátrica?</label>
         <div class="form-check"><input class="form-check-input" type="radio" name="meds"> Sí</div>
         <div class="form-check mb-3"><input class="form-check-input" type="radio" name="meds"> No</div>
 
         <!-- c) Médicos generales -->
-        <label class="form-label">¿Tienes condiciones médicas relevantes?</label>
+        <label class="form-label question">¿Tienes condiciones médicas relevantes?</label>
         <div class="form-check"><input class="form-check-input" type="radio" name="cond"> Sí: <input type="text" class="form-control form-control-sm d-inline-block w-auto" maxlength="200"></div>
         <div class="form-check mb-3"><input class="form-check-input" type="radio" name="cond"> No</div>
 
-        <textarea class="form-control" rows="3" placeholder="Información adicional sobre antecedentes..." maxlength="200"></textarea>
+        <textarea class="form-control question" rows="3" placeholder="Información adicional sobre antecedentes..." maxlength="200"></textarea>
       </div>
 
       <!-- 4. Estado emocional -->
@@ -115,13 +115,13 @@
         <div class="form-check"><input class="form-check-input" type="radio" name="ansiedad"> Más de la mitad de los días</div>
         <div class="form-check mb-3"><input class="form-check-input" type="radio" name="ansiedad"> Casi todos los días</div>
 
-        <label class="form-label">En las últimas dos semanas, ¿con qué frecuencia te has sentido estresado/a?</label>
+        <label class="form-label question">En las últimas dos semanas, ¿con qué frecuencia te has sentido estresado/a?</label>
         <div class="form-check"><input class="form-check-input" type="radio" name="estres"> Nunca</div>
         <div class="form-check"><input class="form-check-input" type="radio" name="estres"> Algunos días</div>
         <div class="form-check"><input class="form-check-input" type="radio" name="estres"> Más de la mitad de los días</div>
         <div class="form-check mb-3"><input class="form-check-input" type="radio" name="estres"> Casi todos los días</div>
 
-        <label class="form-label">En las últimas dos semanas, ¿con qué frecuencia te has sentido triste o desmotivado/a?</label>
+        <label class="form-label question">En las últimas dos semanas, ¿con qué frecuencia te has sentido triste o desmotivado/a?</label>
         <div class="form-check"><input class="form-check-input" type="radio" name="tristeza"> Nunca</div>
         <div class="form-check"><input class="form-check-input" type="radio" name="tristeza"> Algunos días</div>
         <div class="form-check"><input class="form-check-input" type="radio" name="tristeza"> Más de la mitad de los días</div>
@@ -135,10 +135,10 @@
       </div>
 
       <!-- 6. Consentimiento -->
-      <div class="section-card">
+      <div class="section-card consent">
         <h2 class="section-title"><i class="bi bi-shield-check"></i> Consentimiento informado</h2>
         <div class="form-check mb-2">
-          <input class="form-check-input" type="checkbox" required>
+          <input class="form-check-input check-consent" type="checkbox" required>
           <label class="form-check-label">
             He leído y acepto la política de privacidad y el uso de mis datos únicamente con fines de apoyo emocional y mejora de la experiencia en la app.
           </label>
@@ -152,5 +152,6 @@
     </form>
   </div>
 
+  <script type="module" src="../script/forminscrip.js"></script>
 </body>
 </html>
