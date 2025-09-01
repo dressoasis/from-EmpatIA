@@ -63,7 +63,7 @@
     }
     .section-title i {
       font-size: 1.3rem;
-      color: #6a11cb;
+      color: #3583c4;
     }
 
     .question {
@@ -75,7 +75,7 @@
     }
 
     .btn-pastel {
-      background: linear-gradient(90deg, #fbc2eb, #a6c1ee);
+      background: #4DB6AC;
       border: none;
       border-radius: 50px;
       padding: 0.85rem 1.5rem;
