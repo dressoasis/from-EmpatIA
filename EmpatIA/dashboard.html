@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8" />
@@ -38,12 +38,12 @@
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="encuestasDropdown" role="button"
                 data-bs-toggle="dropdown" aria-expanded="false">
-                Encuestas
+                Surveys
               </a>
               <ul class="dropdown-menu" aria-labelledby="encuestasDropdown">
-                <li><a class="dropdown-item" href="views/forms/ansiedad.html">Ansiedad</a></li>
-                <li><a class="dropdown-item" href="views/forms/depresion.html">Depresion</a></li>
-                <li><a class="dropdown-item" href="views/forms/estres.html">Estres</a></li>
+                <li><a class="dropdown-item" href="views/forms/ansiedad.html">Anxiety</a></li>
+                <li><a class="dropdown-item" href="views/forms/depresion.html">Depression</a></li>
+                <li><a class="dropdown-item" href="views/forms/estres.html">Stress</a></li>
               </ul>
             </li>
 
@@ -64,8 +64,8 @@
   <main>
     <!-- Bienvenida -->
     <section class="welcome">
-      <h2>¡Hola, María!</h2>
-      <p>¿Cómo te sientes hoy? Tu bienestar es nuestra prioridad.</p>
+      <h2>¡Hello, María!</h2>
+      <p>How are you feeling today? Your well-being is our priority.</p>
     </section>
 
     <!-- Tarjetas / Grid principal -->
@@ -78,13 +78,13 @@
             <!-- Icono -->
             <div class="icon-container">📝</div>
             <!-- Estado -->
-            <span id="survey-status" class="estado pendiente">Pendiente</span>
+            <span id="survey-status" class="estado pendiente">Pending</span>
           </div>
 
-          <h2 class="card-title">Encuesta diaria</h5>
-            <p class="card-text">Comparte cómo te sientes hoy</p>
+          <h2 class="card-title">Daily survey</h5>
+            <p class="card-text">Share how you feel today</p>
             <a href="/views/dailyencuenta.html" class="btn btn-success" id="complete-survey">
-              Completar ahora
+              Complete survey now
             </a>
         </div>
       </article>
@@ -93,24 +93,24 @@
       <article class="card lumis-card">
         <div class="lumis-illustration"></div>
         <div class="lumis-overlay">
-          <h3 class="lumis-title">Lumis - Tu Asistente IA</h3>
-          <p class="lumis-text">Conéctate con Lumis para apoyo y recomendaciones personalizadas</p>
+          <h3 class="lumis-title">Lumis - your AI assistant</h3>
+          <p class="lumis-text">Connect with Lumis for personalized support and recommendations</p>
 
           <!-- Botones -->
           <div class="lumis-actions">
-            <button id="open-chat" class="btn btn-primary">Abrir chat</button>
-            <button id="show-recommendations" class="btn btn-secondary">Ver recomendaciones</button>
+            <button id="open-chat" class="btn btn-primary">Open chat</button>
+            <button id="show-recommendations" class="btn btn-secondary">See recommendations</button>
           </div>
         </div>
       </article>
 
       <!-- Contenedor para recomendaciones -->
       <section id="recommendations" class="recommendations hidden">
-        <h4>Recomendaciones de Lumis</h4>
+        <h4>Lumis Recommendations</h4>
         <ul>
-          <li>Respira profundo 3 veces antes de comenzar el día 🌞</li>
-          <li>Escribe algo positivo que te haya pasado hoy ✍️</li>
-          <li>Escucha tu canción favorita para relajarte 🎶</li>
+          <li>Take 3 deep breaths before starting the day 🌞</li>
+          <li>Write something positive that happened to you today ✍️</li>
+          <li>Listen to your favorite song to relax 🎶</li>
         </ul>
       </section>
     </section>
@@ -122,28 +122,28 @@
         <div class="tip-icon">💡</div>
 
         <div>
-          <h5 class="tip-title mb-2">Consejo del día</h5>
-          <p class="tip-text mb-0">Recuerda que cada pequeño paso cuenta. Hoy es un buen día para practicar la gratitud
-            y reconocer tus logros.</p>
+          <h5 class="tip-title mb-2">Tip of the day</h5>
+          <p class="tip-text mb-0">Remember that every little step counts. Today is a good day to practice gratitude.
+            and recognize your achievements.</p>
         </div>
       </div>
     </article>
 
     <!-- Insights -->
     <section class="insights">
-      <h3>Insights de Lumis AI</h3>
+      <h3>Lumis AI Insights</h3>
       <div class="insight-cards">
         <article class="insight green">
-          <h4>Progreso Positivo</h4>
-          <p>Tu estado de ánimo ha mejorado un 23% esta semana comparado con la anterior.</p>
+          <h4>Positive Progress</h4>
+          <p>Your mood has improved 23% this week compared to last.</p>
         </article>
         <article class="insight blue">
-          <h4>Patrón Detectado</h4>
-          <p>Tus mejores días suelen ser martes y viernes. Considera programar actividades importantes en esos días.</p>
+          <h4>Pattern Detected</h4>
+          <p>Your best days are usually Tuesdays and Fridays. Consider scheduling important activities on those days.</p>
         </article>
         <article class="insight cyan">
-          <h4>Recomendación</h4>
-          <p>Agregar 10 minutos de meditación por las mañanas puede ayudar a mantener el equilibrio.</p>
+          <h4>Recommendation</h4>
+          <p>Adding 10 minutes of meditation in the morning can help maintain balance.</p>
         </article>
       </div>
     </section>
