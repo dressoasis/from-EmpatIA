@@ -154,40 +154,41 @@ function registrarUsuario(event) {
   // ================== 11. Send Data to Backend ==================
   document.getElementById("loader").classList.remove("d-none");
 
-  fetch("http://127.0.0.1:8000/auth/registerUser", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      user: payload.user,
-      inscripcion: payload.inscripcion
-    })
+fetch("http://127.0.0.1:8000/auth/registerUser", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    user: payload.user,
+    inscripcion: payload.inscripcion
   })
-    .then(res => {
-      if (!res.ok) throw new Error("Error registering user and survey");
-      return res.json();
-    })
-    .then(data => {
-      console.log("Successful full registration:", data);
-      document.getElementById("loader").classList.add("d-none");
+})
+  .then(res => {
+    if (!res.ok) throw new Error("Error registering user and survey");
+    return res.json();
+  })
+  .then(data => {
+    console.log("Successful full registration:", data);
+    document.getElementById("loader").classList.add("d-none");
 
-      // --- Remove previous registerUser from localStorage ---
-      localStorage.removeItem("registerUser");
+    // --- Remove previous registerUser from localStorage ---
+    localStorage.removeItem("registerUser");
 
-      // --- Save logged-in user info in localStorage ---
-      const logerUser = {
-        full_name: payload.user.full_name,
-        username: payload.user.username,
-        national_id: payload.user.national_id,
-        user_profile: payload.user.user_profile
-      };
-      localStorage.setItem("logerUser", JSON.stringify(logerUser));
+    // --- Save logged-in user info in localStorage ---
+    const logerUser = {
+      full_name: payload.user.full_name,
+      username: payload.user.username,
+      national_id: payload.user.national_id,
+      user_profile: data.user_profile_doc_id   // 👈 usar lo que devuelve el backend
+    };
+    localStorage.setItem("logerUser", JSON.stringify(logerUser));
 
-      // --- Redirect to dashboard ---
-      window.location.href = "../views/dashboard.html";
-    })
-    .catch(err => {
-      console.error(err);
-      document.getElementById("loader").classList.add("d-none");
-      alert("An error occurred while registering the user.");
-    });
-}
+    // --- Redirect to dashboard ---
+    window.location.href = "../views/dashboard.html";
+  })
+  .catch(err => {
+    console.error(err);
+    document.getElementById("loader").classList.add("d-none");
+    alert("An error occurred while registering the user.");
+  });
+
+  }
