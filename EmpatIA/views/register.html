@@ -21,7 +21,7 @@
 </h1>
     <p class="mb-4">Sign up to get started</p>
 
-    <form>
+    <form id="form-register">
       <div class="mb-3 text-start">
         <label for="name" class="form-label">Full name</label>
         <input type="text" class="form-control" id="name" placeholder="your name" required>
@@ -42,10 +42,9 @@
         <input type="password" class="form-control" id="confirmPassword" placeholder="********" required>
       </div>
 
-      <div class="d-grid">
-        <button type="button" class="btn btn-pastel" onclick="window.location.href='entrance_survey.html'">Continue registration</button>
-
-
+  <div class="d-grid">
+    <button type="button" class="btn btn-pastel" onclick="validarRegistro()">Continue registration</button>
+  </div>
     <div class="mt-3">
       <small>Already have an account? <a href="./login.html">Log in</a></small>
     </div>

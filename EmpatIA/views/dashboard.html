@@ -39,7 +39,8 @@
 
             <!-- Dropdown for Surveys -->
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="surveysDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="#" id="surveysDropdown" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
                 Surveys
               </a>
               <ul class="dropdown-menu" aria-labelledby="surveysDropdown">
@@ -117,7 +118,8 @@
 
           <!-- Buttons -->
           <div class="lumis-actions">
-            <button id="open-chat" class="btn btn-secondary btn-lumis" onclick="window.location.href='./lumischat.html'">
+            <button id="open-chat" class="btn btn-secondary btn-lumis"
+              onclick="window.location.href='./lumischat.html'">
               Abrir chat
             </button>
             <button id="show-recommendations" class="btn btn-secondary">See recommendations</button>
@@ -128,44 +130,23 @@
       <!-- Recommendations -->
       <section id="recommendations" class="recommendations hidden">
         <h4>Lumis Recommendations</h4>
-        <ul>
-          <li>Take 3 deep breaths before starting the day 🌞</li>
-          <li>Write something positive that happened to you today ✍️</li>
-          <li>Listen to your favorite song to relax 🎶</li>
-        </ul>
       </section>
     </section>
 
     <!-- Tip of the Day -->
-    <article class="card tip-card mb-3">
+    <article id="tip-card" class="card tip-card mb-3">
       <div class="card-body d-flex align-items-start gap-2">
         <div class="tip-icon">💡</div>
         <div>
           <h5 class="tip-title mb-2">Tip of the day</h5>
-          <p class="tip-text mb-0">
-            Remember that every little step counts. Today is a good day to practice gratitude and recognize your accomplishments.
-          </p>
+          <p id="tip-text" class="tip-text mb-0"></p>
         </div>
       </div>
     </article>
-
     <!-- Insights -->
-    <section class="insights">
+    <section id="insights-card" class="insights">
       <h3>Lumis AI Insights</h3>
-      <div class="insight-cards">
-        <article class="insight green">
-          <h4>Positive Progress</h4>
-          <p>Your mood has improved 23% this week compared to last week.</p>
-        </article>
-        <article class="insight blue">
-          <h4>Pattern Detected</h4>
-          <p>Your best days are usually Tuesdays and Fridays. Consider scheduling important activities on those days.</p>
-        </article>
-        <article class="insight cyan">
-          <h4>Recommendation</h4>
-          <p>Adding 10 minutes of meditation in the morning can help maintain balance.</p>
-        </article>
-      </div>
+      <div id="insights-container" class="insight-cards"></div>
     </section>
   </main>
 

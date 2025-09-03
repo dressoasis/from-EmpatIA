@@ -9,7 +9,6 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
   <link rel="stylesheet" href="../assets/entrance_survey.css">
   <link rel="icon" type="image/png" href="../img/logo EmpatIA.png">
-
 </head>
 
 <body>
@@ -35,16 +34,16 @@
         <h2 class="section-title"><i class="bi bi-person-heart"></i> Basic user information</h2>
         <div class="mb-3">
           <label class="form-label">Full name</label>
-          <input type="text" class="form-control" required>
+          <input type="text" class="form-control" name="nombre" required>
         </div>
         <div class="row g-3">
           <div class="col-md-6">
             <label class="form-label">Age</label>
-            <input type="number" class="form-control" min="1">
+            <input type="number" class="form-control" name="edad" min="1">
           </div>
           <div class="col-md-6">
-            <label class="form-label">Genrer (optional)</label>
-            <select class="form-select">
+            <label class="form-label">Gender (optional)</label>
+            <select class="form-select" name="genero">
               <option value="">Select</option>
               <option>Female</option>
               <option>Male</option>
@@ -55,15 +54,24 @@
         </div>
         <div class="mt-3">
           <label class="form-label">City / Country (optional)</label>
-          <input type="text" class="form-control">
+          <input type="text" class="form-control" name="ciudad">
         </div>
         <div class="mt-3">
           <label class="form-label">Personal phone</label>
-          <input type="text" class="form-control">
+          <input type="text" class="form-control" name="telefono">
         </div>
         <div class="mt-3">
           <label class="form-label">Emergency contact number</label>
-          <input type="text" class="form-control">
+          <input type="text" class="form-control" name="emergencia">
+        </div>
+        <!-- EXTRA FIELDS from Spanish version -->
+        <div class="mt-3">
+          <label class="form-label">Identification number</label>
+          <input type="text" class="form-control" name="identificacion">
+        </div>
+        <div class="mt-3">
+          <label class="form-label">Address</label>
+          <input type="text" class="form-control" name="direccion">
         </div>
       </div>
 
@@ -72,16 +80,16 @@
         <h2 class="section-title"><i class="bi bi-calendar-heart"></i> Usage preferences</h2>
         <div class="mb-3">
           <label class="form-label">How often do you expect to use the app?</label>
-          <div class="form-check"><input class="form-check-input" type="checkbox"> <label class="form-check-label">Daily</label></div>
-          <div class="form-check"><input class="form-check-input" type="checkbox"> <label class="form-check-label">Several times a week</label></div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="frecuencia" value="Daily"> <label class="form-check-label">Daily</label></div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="frecuencia" value="Several times a week"> <label class="form-check-label">Several times a week</label></div>
         </div>
         <div class="mb-3">
           <label class="form-label">What do you hope to get from EmpatIA?</label>
-          <div class="form-check"><input class="form-check-input" type="checkbox"> <label class="form-check-label">Immediate emotional support</label></div>
-          <div class="form-check"><input class="form-check-input" type="checkbox"> <label class="form-check-label">Tools to manage anxiety</label></div>
-          <div class="form-check"><input class="form-check-input" type="checkbox"> <label class="form-check-label">Strategies to reduce stress</label></div>
-          <div class="form-check"><input class="form-check-input" type="checkbox"> <label class="form-check-label">Monitoring my mood</label></div>
-          <div class="form-check"><input class="form-check-input" type="checkbox"> <label class="form-check-label">Psychoeducational resources</label></div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="expectativas" value="Immediate emotional support"> Immediate emotional support</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="expectativas" value="Tools to manage anxiety"> Tools to manage anxiety</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="expectativas" value="Strategies to reduce stress"> Strategies to reduce stress</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="expectativas" value="Monitoring my mood"> Monitoring my mood</div>
+          <div class="form-check"><input class="form-check-input" type="checkbox" name="expectativas" value="Psychoeducational resources"> Psychoeducational resources</div>
         </div>
       </div>
 
@@ -91,64 +99,64 @@
 
         <!-- a) Psychological -->
         <label class="form-label">Have you had any previous psychotherapy process?</label>
-        <div class="form-check"><input class="form-check-input" type="radio" name="psico"> <label class="form-check-label">Yes</label></div>
-        <div class="form-check mb-2"><input class="form-check-input" type="radio" name="psico"> <label class="form-check-label">No</label></div>
-        <input type="text" class="form-control mb-3" placeholder="If you answered yes, what was the main reason?" maxlength="200">
+        <div class="form-check"><input class="form-check-input" type="radio" name="psicoterapia" value="Yes"> Yes</div>
+        <div class="form-check mb-2"><input class="form-check-input" type="radio" name="psicoterapia" value="No"> No</div>
+        <input type="text" class="form-control mb-3" name="psicoterapia_motivo" placeholder="If you answered yes, what was the main reason?" maxlength="200">
 
         <!-- b) Psychiatric -->
         <label class="form-label">Have you received any mental health diagnoses?</label>
-        <div class="form-check"><input class="form-check-input" type="checkbox"> Anxiety</div>
-        <div class="form-check"><input class="form-check-input" type="checkbox"> Depression</div>
-        <div class="form-check"><input class="form-check-input" type="checkbox"> Bipolar disorder</div>
-        <div class="form-check"><input class="form-check-input" type="checkbox"> Schizophrenia</div>
-        <div class="form-check"><input class="form-check-input" type="checkbox"> Other: <input type="text" class="form-control form-control-sm d-inline-block w-auto" maxlength="200"></div>
-        <div class="form-check mb-3"><input class="form-check-input" type="checkbox"> Any</div>
+        <div class="form-check"><input class="form-check-input" type="checkbox" name="diagnosticos" value="Anxiety"> Anxiety</div>
+        <div class="form-check"><input class="form-check-input" type="checkbox" name="diagnosticos" value="Depression"> Depression</div>
+        <div class="form-check"><input class="form-check-input" type="checkbox" name="diagnosticos" value="Bipolar disorder"> Bipolar disorder</div>
+        <div class="form-check"><input class="form-check-input" type="checkbox" name="diagnosticos" value="Schizophrenia"> Schizophrenia</div>
+        <div class="form-check"><input class="form-check-input" type="checkbox" name="diagnosticos" value="Other"> Other: <input type="text" name="diagnostico_otro" class="form-control form-control-sm d-inline-block w-auto" maxlength="200"></div>
+        <div class="form-check mb-3"><input class="form-check-input" type="checkbox" name="diagnosticos" value="None"> None</div>
 
         <label class="form-label">Are you currently receiving treatment with psychiatric medication?</label>
-        <div class="form-check"><input class="form-check-input" type="radio" name="meds"> Yes</div>
-        <div class="form-check mb-3"><input class="form-check-input" type="radio" name="meds"> No</div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="medicacion" value="Yes"> Yes</div>
+        <div class="form-check mb-3"><input class="form-check-input" type="radio" name="medicacion" value="No"> No</div>
 
         <!-- c) General practitioners -->
         <label class="form-label">Do you have any relevant medical conditions?</label>
-        <div class="form-check"><input class="form-check-input" type="radio" name="cond"> Yes: <input type="text" class="form-control form-control-sm d-inline-block w-auto" maxlength="200"></div>
-        <div class="form-check mb-3"><input class="form-check-input" type="radio" name="cond"> No</div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="condiciones" value="Yes"> Yes: <input type="text" name="condiciones_detalle" class="form-control form-control-sm d-inline-block w-auto" maxlength="200"></div>
+        <div class="form-check mb-3"><input class="form-check-input" type="radio" name="condiciones" value="No"> No</div>
 
-        <textarea class="form-control" rows="3" placeholder="Additional background information..." maxlength="200"></textarea>
+        <textarea class="form-control" rows="3" name="antecedentes_extra" placeholder="Additional background information..." maxlength="200"></textarea>
       </div>
 
       <!-- 4. Emotional state -->
       <div class="section-card">
         <h2 class="section-title"><i class="bi bi-emoji-smile"></i> Initial emotional state</h2>
         <label class="form-label">In the last two weeks, how often have you felt anxious?</label>
-        <div class="form-check"><input class="form-check-input" type="radio" name="anxiety"> Never</div>
-        <div class="form-check"><input class="form-check-input" type="radio" name="anxiety"> A few days</div>
-        <div class="form-check"><input class="form-check-input" type="radio" name="anxiety"> More than half of the days</div>
-        <div class="form-check mb-3"><input class="form-check-input" type="radio" name="anxiety"> almost every day</div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="ansiedad" value="Never"> Never</div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="ansiedad" value="A few days"> A few days</div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="ansiedad" value="More than half of the days"> More than half of the days</div>
+        <div class="form-check mb-3"><input class="form-check-input" type="radio" name="ansiedad" value="Almost every day"> Almost every day</div>
 
         <label class="form-label">In the last two weeks, how often have you felt stressed?</label>
-        <div class="form-check"><input class="form-check-input" type="radio" name="stress"> Never</div>
-        <div class="form-check"><input class="form-check-input" type="radio" name="stress"> A few days</div>
-        <div class="form-check"><input class="form-check-input" type="radio" name="stress"> More than half of the days</div>
-        <div class="form-check mb-3"><input class="form-check-input" type="radio" name="stress"> almost every day</div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="estres" value="Never"> Never</div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="estres" value="A few days"> A few days</div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="estres" value="More than half of the days"> More than half of the days</div>
+        <div class="form-check mb-3"><input class="form-check-input" type="radio" name="estres" value="Almost every day"> Almost every day</div>
 
         <label class="form-label">In the last two weeks, how often have you felt sad or unmotivated?</label>
-        <div class="form-check"><input class="form-check-input" type="radio" name="depression"> Nunca</div>
-        <div class="form-check"><input class="form-check-input" type="radio" name="depression"> A few days</div>
-        <div class="form-check"><input class="form-check-input" type="radio" name="depression"> More than half of the days</div>
-        <div class="form-check mb-3"><input class="form-check-input" type="radio" name="depression"> almost every day</div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="tristeza" value="Never"> Never</div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="tristeza" value="A few days"> A few days</div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="tristeza" value="More than half of the days"> More than half of the days</div>
+        <div class="form-check mb-3"><input class="form-check-input" type="radio" name="tristeza" value="Almost every day"> Almost every day</div>
       </div>
 
       <!-- 5. Conditional question -->
       <div class="section-card">
         <h2 class="section-title"><i class="bi bi-chat-dots"></i> Additional question</h2>
-        <textarea class="form-control" rows="3" placeholder="Tell us about your experience with anxiety, stress, or depression..." maxlength="200"></textarea>
+        <textarea class="form-control" name="experiencia" rows="3" placeholder="Tell us about your experience with anxiety, stress, or depression..." maxlength="200"></textarea>
       </div>
 
       <!-- 6. Consent -->
       <div class="section-card">
         <h2 class="section-title"><i class="bi bi-shield-check"></i> Informed consent</h2>
         <div class="form-check mb-2">
-          <input class="form-check-input check-consent" type="checkbox" name="consent" required>
+          <input class="form-check-input check-consent" type="checkbox" name="consentimiento" required>
           <label class="form-check-label">
             I have read and agree to the privacy policy and the use of my data solely for emotional support and to improve the app experience.
           </label>
@@ -157,17 +165,14 @@
 
       <!-- End button -->
       <div class="text-center">
-        <button type="submit" class="btn btn-pastel">Register</button>
+        <button type="button" class="btn btn-pastel" onclick="registrarUsuario(event)">Register</button>
       </div>
-
     </form>
 
   </div>
 
-  <script type="module" src="../script/entrance_survey.js"></script>
+  <script type="module" src="../script/entrance_survey.js"></script>  
   <script src="../script/register.js"></script>
   <script src="../script/darkmode.js"></script>
-
 </body>
-
 </html>
