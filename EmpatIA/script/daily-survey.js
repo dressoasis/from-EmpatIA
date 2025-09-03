@@ -1,19 +1,30 @@
-// Elements
+// ======================================================
+// 🎯 Elements
+// - References to survey status display and complete button
+// ======================================================
 const statusEl = document.getElementById("survey-status");
 const completeBtn = document.getElementById("complete-survey");
 
-// Function: complete survey
+// ======================================================
+// 🎯 Event: Complete Survey
+// - Updates status text and styling
+// - Saves completion date in localStorage
+// ======================================================
 completeBtn.addEventListener("click", () => {
   statusEl.textContent = "Completed";
   statusEl.classList.remove("pending");
   statusEl.classList.add("completed");
 
-  // Save the date in localStorage
+  // Save today's date in localStorage
   const today = new Date().toLocaleDateString();
   localStorage.setItem("surveyCompletedDate", today);
 });
 
-// Function: check status every day
+// ======================================================
+// 🎯 Function: Check Survey Status
+// - Compares today's date with stored completion date
+// - Updates status text and CSS class accordingly
+// ======================================================
 function checkSurveyStatus() {
   const today = new Date().toLocaleDateString();
   const completedDate = localStorage.getItem("surveyCompletedDate");
@@ -29,7 +40,9 @@ function checkSurveyStatus() {
   }
 }
 
-// Run on load
+// ======================================================
+// 🎯 Initialize
+// - Check survey status on page load
+// ======================================================
 checkSurveyStatus();
-
-
+// ======================================================

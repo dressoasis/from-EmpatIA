@@ -1,36 +1,51 @@
-
+// ======================================================
+// 🎯 Function: Validate Basic Registration Form
+// - Checks if all required fields are filled
+// - Ensures password and confirmation match
+// - Stores basic user info in localStorage
+// - Redirects to entrance survey on success
+// ======================================================
 function validarRegistro() {
-    const formRegister = document.querySelector("#form-register"); // ← acá usa el id con #
+  const formRegister = document.querySelector("#form-register");
 
-    const inputName = formRegister.name.value.trim();
-    const inputEmail = formRegister.email.value.trim();
-    const inputPassword = formRegister.password.value;
-    const inputConfirmPassword = formRegister.confirmPassword.value;
+  const inputName = formRegister.name.value.trim();
+  const inputEmail = formRegister.email.value.trim();
+  const inputPassword = formRegister.password.value;
+  const inputConfirmPassword = formRegister.confirmPassword.value;
 
-    // Validación
-    if (!inputName || !inputEmail || !inputPassword || !inputConfirmPassword) {
-        alert("Por favor completa todos los campos.");
-        return;
-    }
-    if (inputPassword !== inputConfirmPassword) {
-        alert("Las contraseñas no coinciden.");
-        return;
-    }
+  // --- Validation ---
+  if (!inputName || !inputEmail || !inputPassword || !inputConfirmPassword) {
+    alert("Please fill in all fields.");
+    return;
+  }
+  if (inputPassword !== inputConfirmPassword) {
+    alert("Passwords do not match.");
+    return;
+  }
 
-    // Guardar en localStorage
-    const userData = { name: inputName, email: inputEmail, password: inputPassword };
-    localStorage.setItem("registerUser", JSON.stringify(userData));
+  // --- Store basic user info in localStorage ---
+  const userData = { name: inputName, email: inputEmail, password: inputPassword };
+  localStorage.setItem("registerUser", JSON.stringify(userData));
 
-    // Redirigir solo si todo está correcto
-    window.location.href = "entrance_survey.html";
+  // --- Redirect to entrance survey ---
+  window.location.href = "entrance_survey.html";
 }
 
+
+// ======================================================
+// 🎯 Function: Register Full User and Survey Data
+// - Collects form data from registration + survey
+// - Structures it into organized object
+// - Sends payload to backend
+// - Updates localStorage with logged-in user info
+// - Redirects to dashboard on success
+// ======================================================
 function registrarUsuario(event) {
-  event.preventDefault(); // Evita recargar la página
+  event.preventDefault(); // Prevent page reload
 
   const form = document.querySelector("#form-inscrip");
 
-  // --- 1. Información básica ---
+  // ================== 1. Basic Information ==================
   const nombre = form.nombre.value.trim();
   const edad = form.edad.value ? parseInt(form.edad.value.trim(), 10) : null;
   const genero = form.genero.value ? form.genero.value.toLowerCase() : null;
@@ -38,13 +53,13 @@ function registrarUsuario(event) {
   const telefono = form.telefono.value.trim() || null;
   const emergencia = form.emergencia.value.trim() || null;
 
-  // --- 2. Preferencias ---
+  // ================== 2. Preferences ==================
   const frecuencia_uso = [...form.querySelectorAll("input[name='frecuencia']:checked")]
     .map(el => el.value.toLowerCase().replace(/\s+/g, "_"));
   const expectativas = [...form.querySelectorAll("input[name='expectativas']:checked")]
     .map(el => el.value.toLowerCase().replace(/\s+/g, "_"));
 
-  // --- 3. Antecedentes ---
+  // ================== 3. Medical and Psychological Background ==================
   const psicoterapia = form.psicoterapia.value === "Sí";
   const psicoterapia_motivo = psicoterapia ? (form.psicoterapia_motivo.value.trim() || null) : null;
 
@@ -60,27 +75,27 @@ function registrarUsuario(event) {
   const condiciones_detalle = condiciones_medicas ? (form.condiciones_detalle.value.trim() || null) : null;
   const antecedentes_extra = form.antecedentes_extra.value.trim() || null;
 
-  // --- 4. Estado emocional ---
+  // ================== 4. Emotional State ==================
   const estado_emocional = [
     { emocion: "ansiedad", frecuencia: (form.ansiedad.value || "").toLowerCase().replace(/\s+/g, "_") },
     { emocion: "estres", frecuencia: (form.estres.value || "").toLowerCase().replace(/\s+/g, "_") },
     { emocion: "tristeza", frecuencia: (form.tristeza.value || "").toLowerCase().replace(/\s+/g, "_") }
   ];
 
-  // --- 5. Pregunta adicional ---
+  // ================== 5. Additional Question ==================
   const experiencia = form.experiencia.value.trim() || null;
 
-  // --- 6. Consentimiento ---
+  // ================== 6. Consent ==================
   const consentimiento = form.consentimiento.checked;
 
-  // --- 7. Metadatos ---
+  // ================== 7. Metadata ==================
   const metadata = {
     timestamp: new Date().toISOString(),
     form_version: "1.0",
     language: "es"
   };
 
-  // --- Crear objeto final ---
+  // ================== 8. Create Final Survey Object ==================
   const datosInscripcion = {
     nombre,
     edad,
@@ -105,22 +120,20 @@ function registrarUsuario(event) {
     metadata
   };
 
-  console.log("Datos optimizados:", datosInscripcion);
+  console.log("Optimized survey data:", datosInscripcion);
 
-  // --- Obtener datos del usuario desde localStorage ---
+  // ================== 9. Get Basic User Info from localStorage ==================
   const storedUser = JSON.parse(localStorage.getItem("registerUser"));
-  console.log( storedUser)
   if (!storedUser) {
-    alert("No se encontró información del usuario en localStorage");
+    alert("No user data found in localStorage");
     return;
   }
 
-  
-  // --- Preparar objeto para enviar al backend ---
+  // ================== 10. Prepare Payload for Backend ==================
   const payload = {
     user: {
       full_name: form.nombre.value,
-      username: storedUser.name|| null,
+      username: storedUser.name || null,
       email: storedUser.email,
       password_user: storedUser.password,
       national_id: form.identificacion.value || "00000000",
@@ -135,49 +148,46 @@ function registrarUsuario(event) {
     },
     inscripcion: datosInscripcion
   };
-  console.log(payload)
-// --- Hacer fetch al endpoint --- 
-document.getElementById("loader").classList.remove("d-none");
-fetch("http://127.0.0.1:8000/auth/registerUser", { // endpoint único
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({
-    user: payload.user,
-    inscripcion: payload.inscripcion
-  }) // enviamos ambos objetos juntos
-})
-  .then(res => {
-    if (!res.ok) throw new Error("Error al registrar usuario e inscripción");
-    return res.json();
+
+  console.log(payload);
+
+  // ================== 11. Send Data to Backend ==================
+  document.getElementById("loader").classList.remove("d-none");
+
+  fetch("http://127.0.0.1:8000/auth/registerUser", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      user: payload.user,
+      inscripcion: payload.inscripcion
+    })
   })
-  .then(data => {
-    console.log("Successful full registration:", data);
-    document.getElementById("loader").classList.add("d-none");
+    .then(res => {
+      if (!res.ok) throw new Error("Error registering user and survey");
+      return res.json();
+    })
+    .then(data => {
+      console.log("Successful full registration:", data);
+      document.getElementById("loader").classList.add("d-none");
 
-    // --- Remove the previous registerUser from localStorage ---
-    localStorage.removeItem("registerUser");
+      // --- Remove previous registerUser from localStorage ---
+      localStorage.removeItem("registerUser");
 
-    // --- Create logerUser with only the required fields ---
-    const logerUser = {
-      full_name: payload.user.full_name,
-      username: payload.user.username,
-      national_id: payload.user.national_id,
-      user_profile: payload.user.user_profile
-    };
+      // --- Save logged-in user info in localStorage ---
+      const logerUser = {
+        full_name: payload.user.full_name,
+        username: payload.user.username,
+        national_id: payload.user.national_id,
+        user_profile: payload.user.user_profile
+      };
+      localStorage.setItem("logerUser", JSON.stringify(logerUser));
 
-    localStorage.setItem("logerUser", JSON.stringify(logerUser));
-
-    // --- Redirect to dashboard after successful registration ---
-    window.location.href = "../views/dashboard.html";
-  })
-
+      // --- Redirect to dashboard ---
+      window.location.href = "../views/dashboard.html";
+    })
     .catch(err => {
-    console.error(err);
-    document.getElementById("loader").classList.add("d-none");
-    alert("Ocurrió un error al registrar el usuario.");
+      console.error(err);
+      document.getElementById("loader").classList.add("d-none");
+      alert("An error occurred while registering the user.");
     });
-
-
 }
-
-
