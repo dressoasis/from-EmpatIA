@@ -1,35 +1,35 @@
 function validarRegistro() {
-    const formRegister = document.querySelector("#form-register"); // ← acá usa el id con #
+    const formRegister = document.querySelector("#form-register");
 
     const inputName = formRegister.name.value.trim();
     const inputEmail = formRegister.email.value.trim();
     const inputPassword = formRegister.password.value;
     const inputConfirmPassword = formRegister.confirmPassword.value;
 
-    // Validación
+    // Validation
     if (!inputName || !inputEmail || !inputPassword || !inputConfirmPassword) {
-        alert("Por favor completa todos los campos.");
+        alert("Please complete all fields.");
         return;
     }
     if (inputPassword !== inputConfirmPassword) {
-        alert("Las contraseñas no coinciden.");
+        alert("The passwords do not match.");
         return;
     }
 
-    // Guardar en localStorage
+    // Save to localStorage
     const userData = { name: inputName, email: inputEmail, password: inputPassword };
     localStorage.setItem("registerUser", JSON.stringify(userData));
 
-    // Redirigir solo si todo está correcto
-    window.location.href = "forminscrip.html";
+    // Redirect only if everything is correct
+    window.location.href = "entrance_survey.html";
 }
 
 function registrarUsuario(event) {
-  event.preventDefault(); // Evita recargar la página
+  event.preventDefault();
 
   const form = document.querySelector("#form-inscrip");
 
-  // --- 1. Información básica ---
+  // --- 1. Basic information ---
   const nombre = form.nombre.value.trim();
   const edad = form.edad.value ? parseInt(form.edad.value.trim(), 10) : null;
   const genero = form.genero.value ? form.genero.value.toLowerCase() : null;
@@ -37,13 +37,13 @@ function registrarUsuario(event) {
   const telefono = form.telefono.value.trim() || null;
   const emergencia = form.emergencia.value.trim() || null;
 
-  // --- 2. Preferencias ---
+  // --- 2. Preferences ---
   const frecuencia_uso = [...form.querySelectorAll("input[name='frecuencia']:checked")]
     .map(el => el.value.toLowerCase().replace(/\s+/g, "_"));
   const expectativas = [...form.querySelectorAll("input[name='expectativas']:checked")]
     .map(el => el.value.toLowerCase().replace(/\s+/g, "_"));
 
-  // --- 3. Antecedentes ---
+  // --- 3. Background ---
   const psicoterapia = form.psicoterapia.value === "Sí";
   const psicoterapia_motivo = psicoterapia ? (form.psicoterapia_motivo.value.trim() || null) : null;
 
@@ -59,27 +59,27 @@ function registrarUsuario(event) {
   const condiciones_detalle = condiciones_medicas ? (form.condiciones_detalle.value.trim() || null) : null;
   const antecedentes_extra = form.antecedentes_extra.value.trim() || null;
 
-  // --- 4. Estado emocional ---
+  // --- 4. Emotional state ---
   const estado_emocional = [
     { emocion: "ansiedad", frecuencia: (form.ansiedad.value || "").toLowerCase().replace(/\s+/g, "_") },
     { emocion: "estres", frecuencia: (form.estres.value || "").toLowerCase().replace(/\s+/g, "_") },
     { emocion: "tristeza", frecuencia: (form.tristeza.value || "").toLowerCase().replace(/\s+/g, "_") }
   ];
 
-  // --- 5. Pregunta adicional ---
+  // --- 5. Additional question ---
   const experiencia = form.experiencia.value.trim() || null;
 
-  // --- 6. Consentimiento ---
+  // --- 6. Consent ---
   const consentimiento = form.consentimiento.checked;
 
-  // --- 7. Metadatos ---
+  // --- 7. Metadata ---
   const metadata = {
     timestamp: new Date().toISOString(),
     form_version: "1.0",
     language: "es"
   };
 
-  // --- Crear objeto final ---
+  // --- Create final object ---
   const datosInscripcion = {
     nombre,
     edad,
@@ -104,18 +104,18 @@ function registrarUsuario(event) {
     metadata
   };
 
-  console.log("Datos optimizados:", datosInscripcion);
+  console.log("Optimized data:", datosInscripcion);
 
-  // --- Obtener datos del usuario desde localStorage ---
+  // --- Get user data from localStorage ---
   const storedUser = JSON.parse(localStorage.getItem("registerUser"));
   console.log( storedUser)
   if (!storedUser) {
-    alert("No se encontró información del usuario en localStorage");
+    alert("No user information was found in localStorage.");
     return;
   }
 
   
-  // --- Preparar objeto para enviar al backend ---
+  // --- Prepare object to send to the backend ---
   const payload = {
     user: {
       full_name: form.nombre.value,
@@ -135,29 +135,30 @@ function registrarUsuario(event) {
     inscripcion: datosInscripcion
   };
   console.log(payload)
-// --- Hacer fetch al endpoint --- 
+
+// --- Fetch the endpoint --- 
 document.getElementById("loader").classList.remove("d-none");
-fetch("http://127.0.0.1:8000/auth/registerUser", { // endpoint único
+fetch("http://127.0.0.1:8000/auth/registerUser", { // Single endpoint
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify({
     user: payload.user,
     inscripcion: payload.inscripcion
-  }) // enviamos ambos objetos juntos
+  }) // We ship both items together.
 })
   .then(res => {
-    if (!res.ok) throw new Error("Error al registrar usuario e inscripción");
+    if (!res.ok) throw new Error("Error registering user and enrollment");
     return res.json();
   })
     .then(data => {
-    console.log("Registro completo exitoso:", data);
+    console.log("Registration complete successfully:", data);
     document.getElementById("loader").classList.add("d-none");
-    window.location.href = "../views/dashboard.html";
+    window.location.href = "./dashboard.html";
     })
     .catch(err => {
     console.error(err);
     document.getElementById("loader").classList.add("d-none");
-    alert("Ocurrió un error al registrar el usuario.");
+    alert("An error occurred while registering the user.");
     });
 
 

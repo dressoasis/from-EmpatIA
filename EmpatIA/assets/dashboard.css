@@ -1,15 +1,3 @@
-/* ===========================
-   Dashboard - CSS Completo
-   ===========================
-   - Navbar reparado
-   - Grid de Cards
-   - Modo oscuro preservado
-   - Lumis dark ocupa toda la card
-   - Tip-card
-   - Responsive
-   - Toggle Uiverse fuera del menú hamburguesa
-*/
-
 /* ---------- Variables ---------- */
 :root {
   --bg: #F9F9F9;
@@ -27,7 +15,7 @@
   --toggle-color: rgba(0, 0, 0, 0.55);
 }
 
-/* ---------- Modo oscuro ---------- */
+/* ---------- Dark mode ---------- */
 body.dark-mode {
   --bg: #0f1720;
   --card-bg: #0b1116;
@@ -63,7 +51,7 @@ main {
   padding: 22px;
 }
 
-/* ===== Navbar (REPARADO) ===== */
+/* ===== Navbar ===== */
 header.navbar {
   background: var(--card-bg);
   box-shadow: var(--shadow-sm);
@@ -80,7 +68,7 @@ header.navbar .container-fluid {
   gap: 12px;
 }
 
-/* Logo y marca */
+/* Logo and brand */
 .logo {
   display: flex;
   align-items: center;
@@ -134,7 +122,7 @@ header.navbar nav a:hover {
   background: rgba(0, 0, 0, 0.02);
 }
 
-/* Botón hamburguesa */
+/* Hamburger button */
 .navbar-toggler {
   border: none;
   padding: 6px;
@@ -157,15 +145,14 @@ header.navbar nav a:hover {
   background-position: center;
 }
 
-/* ===== Toggle Uiverse (FUERA DEL MENÚ) ===== */
+/* ===== Toggle Uiverse (NOT ON THE MENU) ===== */
 .theme-switch-container {
-  margin-left: auto;
-  /* siempre a la derecha */
+  margin-left: auto; /* Always on the right */
   display: flex;
   align-items: center;
 }
 
-/* ===== Bienvenida ===== */
+/* ===== Welcome ===== */
 .welcome {
   padding: 18px 8px;
   margin-top: 6px;
@@ -182,7 +169,7 @@ header.navbar nav a:hover {
   color: var(--muted);
 }
 
-/* ===== Grid de Cards ===== */
+/* ===== Card Grid ===== */
 .cards {
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -191,7 +178,7 @@ header.navbar nav a:hover {
   margin: 18px 0;
 }
 
-.encuesta-card {
+.survey-card {
   grid-column: 1;
   grid-row: 1;
 }
@@ -206,7 +193,7 @@ header.navbar nav a:hover {
   grid-row: 2;
 }
 
-/* ===== Cards base ===== */
+/* ===== Base cards ===== */
 .card {
   background: var(--card-bg);
   padding: 18px;
@@ -221,8 +208,8 @@ header.navbar nav a:hover {
   box-shadow: var(--shadow-md);
 }
 
-/* ===== Encuesta diaria ===== */
-.encuesta-card {
+/* ===== Daily survey ===== */
+.survey-card {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -270,19 +257,19 @@ header.navbar nav a:hover {
   border: 1px solid rgba(39, 174, 96, 0.08);
 }
 
-.encuesta-card .card-title {
+.survey-card .card-title {
   margin: 12px 0 6px;
   font-size: 1.05rem;
   font-weight: 700;
   color: #2d3436;
 }
 
-.encuesta-card .card-text {
+.survey-card .card-text {
   color: #555;
   margin: 0 0 12px;
 }
 
-.encuesta-card .btn {
+.survey-card .btn {
   align-self: flex-start;
   background: linear-gradient(180deg, #4db57f, #2fa05f);
   border: none;
@@ -292,17 +279,17 @@ header.navbar nav a:hover {
   font-weight: 700;
 }
 
-.encuesta-card .btn:hover {
+.survey-card .btn:hover {
   transform: translateY(-2px);
   background: linear-gradient(180deg, #46a972, #278a50);
 }
 
-/* ===== Lumis card (fondo + overlay) ===== */
+/* ===== Lumis card (background + overlay) ===== */
 .lumis-card {
   position: relative;
   border-radius: 15px;
   overflow: hidden;
-  background: url('/img/cardlumis.png') center/cover no-repeat;
+  background: url('../img/cardlumis.png') center/cover no-repeat;
   min-height: 250px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
@@ -370,7 +357,16 @@ header.navbar nav a:hover {
   background: #58aed2;
 }
 
-/* ===== Recomendaciones ===== */
+.btn-lumis {
+  background: #4BAEA0;
+  color: #fff;
+}
+
+.btn-lumis:hover {
+  background: #3f9287;
+}
+
+/* ===== Recommendations ===== */
 .recommendations {
   background: linear-gradient(135deg, #AEEBCF, #FFF9C8);
   padding: 15px;
@@ -386,9 +382,9 @@ header.navbar nav a:hover {
   transition: max-height 0.8s ease, opacity 0.5s ease;
 }
 
-/* Cuando tiene la clase show */
+/* When you have the show class */
 #recommendations.show {
-  max-height: 600px; /* pon un valor suficientemente grande */
+  max-height: 600px;
   opacity: 1;
 }
 
@@ -418,45 +414,7 @@ header.navbar nav a:hover {
   line-height: 1.4;
 }
 
-/* ===== Responsive ===== */
-@media (max-width:900px) {
-  .cards {
-    grid-template-columns: 1fr;
-    grid-auto-rows: auto;
-  }
-
-  .encuesta-card,
-  .lumis-card,
-  .recommendations {
-    grid-column: 1;
-    grid-row: auto;
-  }
-
-  header.navbar .container-fluid {
-    padding: 10px 4%;
-  }
-
-  header.navbar .navbar-collapse {
-    justify-content: flex-start;
-  }
-}
-
-@media (max-width:520px) {
-  .brand {
-    font-size: 1rem;
-  }
-
-  .welcome h2 {
-    font-size: 1.25rem;
-  }
-
-  .encuesta-card {
-    min-height: 180px;
-    padding: 14px;
-  }
-}
-
-/* ===== Modo oscuro adicional ===== */
+/* ===== Additional dark mode ===== */
 body.dark-mode {
   --bg: #0b1116;
   --card-bg: #0f171a;
@@ -498,8 +456,7 @@ body.dark-mode header.navbar .nav-link:hover {
   color: var(--accent);
 }
 
-/* ===== Toggle Uiverse original ===== */
-/* ... Mantengo todo tu CSS de toggle intacto ... */
+/* ===== Original Toggle Uiverse ===== */
 
 .theme-switch {
   --toggle-size: 20px;
@@ -720,7 +677,7 @@ body.dark-mode header.navbar .nav-link:hover {
   margin: 0;
 }
 
-/* ===== Colores específicos ===== */
+/* ===== Specific colors ===== */
 .insight.green {
   background: linear-gradient(135deg, #d2f5e5, #baf2d5);
 }
@@ -733,7 +690,7 @@ body.dark-mode header.navbar .nav-link:hover {
   background: linear-gradient(135deg, #d4f9f3, #baf0ea);
 }
 
-/* ===== Iconos dentro de títulos ===== */
+/* ===== Icons within titles ===== */
 .insight.green h4::before {
   content: "🟢";
 }
@@ -744,4 +701,42 @@ body.dark-mode header.navbar .nav-link:hover {
 
 .insight.cyan h4::before {
   content: "💡";
+}
+
+/* ===== Responsive ===== */
+@media (max-width:900px) {
+  .cards {
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+  }
+
+  .survey-card,
+  .lumis-card,
+  .recommendations {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  header.navbar .container-fluid {
+    padding: 10px 4%;
+  }
+
+  header.navbar .navbar-collapse {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width:520px) {
+  .brand {
+    font-size: 1rem;
+  }
+
+  .welcome h2 {
+    font-size: 1.25rem;
+  }
+
+  .survey-card {
+    min-height: 180px;
+    padding: 14px;
+  }
 }

@@ -19,11 +19,11 @@ async function login(email, password) {
             alert(data.message);
             window.location.href = "../views/dashboard.html";
         } else if (response.status === 401) {
-            alert("Credenciales incorrectas");
+            alert("Incorrect credentials");
         } else {
-            alert(data.detail || "Ocurrió un error");
+            alert(data.detail || "An error occurred");
         }
     } catch (error) {
-        alert("Error de conexión con el servidor");
+        alert("Error connecting to the server");
     }
 }

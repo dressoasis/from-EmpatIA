@@ -5,10 +5,10 @@ document.addEventListener("DOMContentLoaded", () => {
         entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add("show");
-            obs.unobserve(entry.target); // deja de observar para que no se repita
+            obs.unobserve(entry.target); // Stop watching so it doesn't happen again
         }
     });
-    }, { threshold: 0.15 }); // se activa cuando 15% del elemento es visible
+    }, { threshold: 0.15 }); // Activated when 15% of the element is visible
 
     cards.forEach(card => observer.observe(card));
 });

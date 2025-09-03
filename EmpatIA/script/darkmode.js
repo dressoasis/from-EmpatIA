@@ -2,25 +2,24 @@
 // Toggle Dark Mode - JS
 // ==========================
 
-// Seleccionamos el botón por su ID
 const darkToggle = document.getElementById("darkModeToggle");
 
-// Función para activar/desactivar modo oscuro
+// Function to enable/disable dark mode
 function setDarkMode(enabled) {
     if (enabled) {
-        document.body.classList.add("dark-mode"); // agrega clase
-        localStorage.setItem("theme", "dark");   // guarda preferencia
-        darkToggle.textContent = "☀️";          // cambia icono
-        darkToggle.setAttribute("aria-pressed", "true"); // accesibilidad
+        document.body.classList.add("dark-mode"); // Add class
+        localStorage.setItem("theme", "dark");   // Save preference
+        darkToggle.textContent = "☀️";          // Change icon
+        darkToggle.setAttribute("aria-pressed", "true"); // Accessibility
     } else {
-        document.body.classList.remove("dark-mode"); // quita clase
-        localStorage.setItem("theme", "light");     // guarda preferencia
+        document.body.classList.remove("dark-mode"); // Remove class
+        localStorage.setItem("theme", "light");     // Save preference
         darkToggle.textContent = "🌙";             // cambia icono
-        darkToggle.setAttribute("aria-pressed", "false"); // accesibilidad
+        darkToggle.setAttribute("aria-pressed", "false"); // Accessibility
     }
 }
 
-// Revisar preferencia guardada al cargar la página
+// Check saved preference when loading the page
 const savedTheme = localStorage.getItem("theme");
 if (savedTheme === "dark") {
     setDarkMode(true);
@@ -28,7 +27,7 @@ if (savedTheme === "dark") {
     setDarkMode(false);
 }
 
-// Evento para alternar modo oscuro al hacer click
+// Event to toggle dark mode when clicked
 darkToggle.addEventListener("click", () => {
     const isDark = document.body.classList.contains("dark-mode");
     setDarkMode(!isDark);
